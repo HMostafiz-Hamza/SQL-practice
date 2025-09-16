@@ -50,12 +50,34 @@ In the MariaDB shell, these columns are returned as:
 ## 🗄️ Practice Highlights
 
 ### 1. Retrive After Hours login attempts
-- **Goal:** My team is investigating failed login attempts that were made after business hours. I want to retrieve this information from the login activity. Office hours end at '18:00'  
+- **Goal:** My team is investigating failed login attempts that were made after business hours. I want to retrieve this information from the login activity. Office hours end at '18:00'.
+    
 - **Why it matters:** All the login attemps are stored in the databse. By filtering the failed login attempts made after <mark>'18:00'</mark> I can identify potential threats like Brute-force attacks, compromised accounts, credential stuffing and misconfigurations. It is a part of my daily SOC monitoring.
+
+- **The SQL Query:** ```SELECT *
+FROM log_in_attempts
+WHERE login_time > '18:00' AND success = FALSE;```
+
+  
 - **How this works:** The <mark>login_time</mark> column in the <mark>log_in_attempts</mark> table contains information on when login attempts were made.
 The <mark>success</mark> column in the <mark>log_in_attempts</mark> table contains values of <mark>TRUE</mark> or <mark>FALSE</mark> to indicate whether the login was successful. MySQL stores Boolean values as 1 for <mark>TRUE</mark>, and 0 for <mark>FALSE</mark>. This means that <mark>TRUE</mark> is represented as 1, and <mark>FALSE</mark> represented as 0 in the <mark>success</mark> column. In the shell screenshot I can see that 19 failed login attempts were made after '18:00' which means someone is trying to infiltrate the database.
 
 **In MariaDB Shell**  
 ![Create table](sql-query-1.png "Query")
 ![Create table](sql-query-2.png "Result")
+
+
+### 1. Retrive login attempts on a specific date
+- **Goal:** Your team is investigating a suspicious event that occurred on '2022-05-09'. I want to retrieve all login attempts that occurred on this day and the day before ('2022-05-08').
+    
+- **Why it matters:** By filtering the login attempts by date I can narrow down the list and cause of the suspicious event.
+
+- **The SQL Query:** ```SELECT * 
+FROM log_in_attempts 
+WHERE login_date = '2022-05-09' OR login_date = '2022-05-08';```
+  
+- **How this works:** The <mark>login_date</mark> column in the <mark>log_in_attempts</mark> table contains information on the dates when login attempts were made. So, if I put '2022-05-09' and '2022-05-08' dates in the <mark>login_date</mark> using OR operator, I should get all the login attempts made in these 2 days. In this case which is 75 attempts in total. Its long so I've put the screenshot of the first few here. 
+
+**In MariaDB Shell**
+![Create table](sql-query-3.png "Login filtering by dates")
 
