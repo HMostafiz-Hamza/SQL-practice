@@ -63,11 +63,12 @@ WHERE login_time > '18:00' AND success = FALSE;```
 The <mark>success</mark> column in the <mark>log_in_attempts</mark> table contains values of <mark>TRUE</mark> or <mark>FALSE</mark> to indicate whether the login was successful. MySQL stores Boolean values as 1 for <mark>TRUE</mark>, and 0 for <mark>FALSE</mark>. This means that <mark>TRUE</mark> is represented as 1, and <mark>FALSE</mark> represented as 0 in the <mark>success</mark> column. In the shell screenshot I can see that 19 failed login attempts were made after '18:00' which means someone is trying to infiltrate the database.
 
 **In MariaDB Shell**  
+
 ![Create table](sql-query-1.png "Query")
 ![Create table](sql-query-2.png "Result")
 
 
-### 1. Retrive login attempts on a specific date
+### 2. Retrive login attempts on a specific date
 - **Goal:** Your team is investigating a suspicious event that occurred on '2022-05-09'. I want to retrieve all login attempts that occurred on this day and the day before ('2022-05-08').
     
 - **Why it matters:** By filtering the login attempts by date I can narrow down the list and cause of the suspicious event.
@@ -79,5 +80,22 @@ WHERE login_date = '2022-05-09' OR login_date = '2022-05-08';```
 - **How this works:** The <mark>login_date</mark> column in the <mark>log_in_attempts</mark> table contains information on the dates when login attempts were made. So, if I put '2022-05-09' and '2022-05-08' dates in the <mark>login_date</mark> using OR operator, I should get all the login attempts made in these 2 days. In this case which is 75 attempts in total. Its long so I've put the screenshot of the first few here. 
 
 **In MariaDB Shell**
+
 ![Create table](sql-query-3.png "Login filtering by dates")
 
+
+### 3. Retrive login attempts outside of a place (Mexico)
+- **Goal:** There’s been suspicious activity with login attempts, but the team has determined that this activity didn't originate in Mexico. Now, I need to investigate login attempts that occurred outside of Mexico. I'll be using filters in SQL to create a query that identifies all login attempts that occurred outside of Mexico.
+    
+- **Why it matters:** BAs the team decided that the login attempts are from outside of Mexico. I should focus on narrowing down the list to the countries that are not Mexico. It saves my team time to investigate the situation.
+
+- **The SQL Query:** ```SELECT * 
+FROM log_in_attempts 
+WHERE NOT country LIKE 'MEX%';```
+  
+- **How this works:** The <mark>country</mark> column in the <mark>log_in_attempts</mark> table contains information on the location of the login attempts. As I have to look for countries that are not mexico. I'm gonna use the <mark>NOT</mark> operator after <mark>WHERE</mark>. When referring to Mexico, the country column contains values of both <mark>MEX</mark> and <mark>MEXICO</mark>, and I need to use the <mark>LIKE</mark> keyword with <mark>%</mark> to make sure my query reflects this. Which is why I have used 'MEX%' after <mark>LIKE</mark> keyword to find the countries, I should get all the login attempts made outside of Mexico. In this case which is 144 attempts were made outside of Mexico. Its long list so I've put the screenshot of the first and last few here.
+
+**In MariaDB Shell**
+
+![Create table](sql-query-4.png "Login filtering by specific Location 1")
+![Create table](sql-query-5.png "Login filtering by specific Location 2")
