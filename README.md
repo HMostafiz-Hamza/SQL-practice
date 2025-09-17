@@ -1,7 +1,6 @@
 # SQL Practice — Portfolio
 
-This folder contains my SQL learning and practice exercises from Google cybersecurity professionals certificate course, documented with screenshots.  
-It demonstrates the AND, OR, and NOT operators in SQL to filter for information.  
+This project demonstrates how SQL can be applied to investigate user authentication activity and employee data within a company’s database. Using query filters, I retrieved after-hours login attempts, logins on specific dates, and access attempts from unusual locations. In addition, I practiced retrieving employee information by department to simulate real-world HR and auditing use cases. These exercises highlight SQL’s role in security monitoring and business operations.
 All sensitive/personal data has been replaced with placeholders.
 
 ## Scenario
@@ -87,7 +86,7 @@ WHERE login_date = '2022-05-09' OR login_date = '2022-05-08';```
 ### 3. Retrive login attempts outside of a place (Mexico)
 - **Goal:** There’s been suspicious activity with login attempts, but the team has determined that this activity didn't originate in Mexico. Now, I need to investigate login attempts that occurred outside of Mexico. I'll be using filters in SQL to create a query that identifies all login attempts that occurred outside of Mexico.
     
-- **Why it matters:** BAs the team decided that the login attempts are from outside of Mexico. I should focus on narrowing down the list to the countries that are not Mexico. It saves my team time to investigate the situation.
+- **Why it matters:** As the team decided that the login attempts are from outside of Mexico. I should focus on narrowing down the list to the countries that are not Mexico. It saves my team time to investigate the situation.
 
 - **The SQL Query:** ```SELECT * 
 FROM log_in_attempts 
@@ -99,3 +98,47 @@ WHERE NOT country LIKE 'MEX%';```
 
 ![Create table](sql-query-4.png "Login filtering by specific Location 1")
 ![Create table](sql-query-5.png "Login filtering by specific Location 2")
+
+
+### 4. Retrive employees in Marketing
+- **Goal:** My team wants to perform security updates on specific employee machines in the Marketing department. I am responsible for getting information on these employee machines and will need to query the employees table. I'll use SQL to create a query that identifies all employees in the Marketing department for all offices in the East building.
+    
+- **Why it matters:** Filtering out only the machines in the marketing department makes it easier to perform security update on all of the specific devices at once and saves time.
+
+- **The SQL Query:** ```SELECT * 
+FROM employees 
+WHERE department = 'Marketing' AND office LIKE 'East%';```
+  
+- **How this works:** This time we access the <mark>employees</mark> table. The department of the employee is found in the <mark>department</mark> column, which contains values that include Marketing. The office is found in the <mark>office</mark> column. Some examples of values in this column are ```East-170```, ```East-320```, and ```North-434```. Thats why I've used the <mark>LIKE</mark> keyword with % to filter for the East building.
+
+**In MariaDB Shell**
+
+![Create table](sql-query-4.png "Login filtering by specific Location 1")
+![Create table](sql-query-5.png "Login filtering by specific Location 2")
+
+
+### 5. Retrive employees in finance or sales
+- **Goal:** My team now needs to perform a different security update on machines for employees in the Sales and Finance departments. I'll be using SQL to create a query that identifies all employees in the Sales or Finance departments. 
+    
+- **Why it matters:** Filtering out only the machines in the Finance or Sales department makes it easier to perform security update on all of the specific devices at once and saves time.
+
+- **The SQL Query:** ```SELECT * 
+FROM employees 
+WHERE department = 'Finance' OR department = 'Sales';```
+  
+- **How this works:** Even though both conditions are based on the same column which is department, I need to write out both full conditions. This means that I must specify department as the column in both conditions. Also I have to use <mark>OR<mark/> operator in between both condition. So, that I get the machines from both department.
+
+**In MariaDB Shell**
+
+![Create table](sql-query-4.png "Login filtering by specific Location 1")
+![Create table](sql-query-5.png "Login filtering by specific Location 2")
+
+___
+## Summery 
+
+Across the tasks, I focused on using SQL queries to uncover unusual login behaviors and extract department-level employee data. By retrieving after-hours and out-of-country login attempts, I simulated how a SOC analyst might detect suspicious activity. The employee department queries demonstrate how SQL can also support internal reporting and HR processes. Together, these exercises connect technical query skills to practical security and business scenarios.
+
+
+
+
+
