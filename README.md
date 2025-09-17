@@ -63,8 +63,8 @@ The <mark>success</mark> column in the <mark>log_in_attempts</mark> table contai
 
 **In MariaDB Shell**  
 
-![Create table](sql-query-1.png "Query")
-![Create table](sql-query-2.png "Result")
+![Create table](after-hours-login.png "After hours login")
+
 
 
 ### 2. Retrive login attempts on a specific date
@@ -80,7 +80,8 @@ WHERE login_date = '2022-05-09' OR login_date = '2022-05-08';```
 
 **In MariaDB Shell**
 
-![Create table](sql-query-3.png "Login filtering by dates")
+![Create table](date-first.png "Login filtering by dates")
+![Create table](date-last.png "Login filtering by dates")
 
 
 ### 3. Retrive login attempts outside of a place (Mexico)
@@ -96,8 +97,9 @@ WHERE NOT country LIKE 'MEX%';```
 
 **In MariaDB Shell**
 
-![Create table](sql-query-4.png "Login filtering by specific Location 1")
-![Create table](sql-query-5.png "Login filtering by specific Location 2")
+![Create table](mexico-first.png "Login filtering by specific Location")
+![Create table](mexico-last.png "Login filtering by specific Location")
+
 
 
 ### 4. Retrive employees in Marketing
@@ -113,8 +115,8 @@ WHERE department = 'Marketing' AND office LIKE 'East%';```
 
 **In MariaDB Shell**
 
-![Create table](sql-query-4.png "Login filtering by specific Location 1")
-![Create table](sql-query-5.png "Login filtering by specific Location 2")
+![Create table](marketing.png "Login filtering by specific Ldepartment and building")
+
 
 
 ### 5. Retrive employees in finance or sales
@@ -130,8 +132,9 @@ WHERE department = 'Finance' OR department = 'Sales';```
 
 **In MariaDB Shell**
 
-![Create table](sql-query-4.png "Login filtering by specific Location 1")
-![Create table](sql-query-5.png "Login filtering by specific Location 2")
+![Create table](finance-first.png "Login filtering by specific departments")
+![Create table](finance-last.png "Login filtering by specific departments")
+
 
 ___
 ## Summery 
