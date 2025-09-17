@@ -63,7 +63,7 @@ The <mark>success</mark> column in the <mark>log_in_attempts</mark> table contai
 
 **In MariaDB Shell**  
 
-![Create table](after-hours-login.png "After hours login")
+![After hour logins](after-hours-login.png "After hours login")
 
 
 
@@ -80,8 +80,8 @@ WHERE login_date = '2022-05-09' OR login_date = '2022-05-08';```
 
 **In MariaDB Shell**
 
-![Create table](date-first.png "Login filtering by dates")
-![Create table](date-last.png "Login filtering by dates")
+![Login on a specific date](date-first.png "Login filtering by dates")
+![Login on a specific date](date-last.png "Login filtering by dates")
 
 
 ### 3. Retrive login attempts outside of a place (Mexico)
@@ -97,8 +97,8 @@ WHERE NOT country LIKE 'MEX%';```
 
 **In MariaDB Shell**
 
-![Create table](mexico-first.png "Login filtering by specific Location")
-![Create table](mexico-last.png "Login filtering by specific Location")
+![login by specific location](mexico-first.png "Login filtering by specific Location")
+![Login by specific location](mexico-last.png "Login filtering by specific Location")
 
 
 
@@ -115,7 +115,7 @@ WHERE department = 'Marketing' AND office LIKE 'East%';```
 
 **In MariaDB Shell**
 
-![Create table](marketing.png "Login filtering by specific Ldepartment and building")
+![Machines of a specific department and office](marketing.png "Login filtering by specific Ldepartment and building")
 
 
 
@@ -132,8 +132,8 @@ WHERE department = 'Finance' OR department = 'Sales';```
 
 **In MariaDB Shell**
 
-![Create table](finance-first.png "Login filtering by specific departments")
-![Create table](finance-last.png "Login filtering by specific departments")
+![Machines of a specific department](finance-first.png "Login filtering by specific departments")
+![Machines of a specific department](finance-last.png "Login filtering by specific departments")
 
 
 ___
